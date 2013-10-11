@@ -57,7 +57,6 @@ ${srcdir}/linklist.F
 ${srcdir}/mod_lag.F
 ${srcdir}/mod_northpole.F
 ${srcdir}/mod_pwp.F
-${srcdir}/mod_dye.F
 ${srcdir}/mod_optimal_interpolation.F
 ${srcdir}/mod_report.F
 ${srcdir}/mod_probe.F
@@ -87,6 +86,10 @@ ${srcdir}/mod_station_timeseries.F
 ${srcdir}/mod_boundschk.F
     )
 
+if (ENABLE_DYE_RELEASE)
+    set (MODS ${MODS} ${srcdir}/mod_dye.F)
+endif()
+
 set (MODS_W
 ${srcdir}/mod_main_wave.F
 ${srcdir}/swmod1.F
@@ -95,9 +98,11 @@ ${srcdir}/swmod3.F
 ${srcdir}/mod_action_im.F
 ${srcdir}/mod_action_ex.F
 ${srcdir}/mod_wavesetup.F
-${srcdir}/mod_wave_current_interaction.F
 ${srcdir}/mod_bbl.F
     )
+if (ENABLE_WAVE_CURRENT_INTERACTION)
+    set (MODS_W ${MODS_W} ${srcdir}/mod_wave_current_interaction.F)
+endif()
 
 set (MAIN
 ${srcdir}/genmap.F
