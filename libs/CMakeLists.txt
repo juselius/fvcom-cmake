@@ -1,6 +1,6 @@
 include(ExternalProject)
 
-set (libsdir ${FVCOM_DIR}/FVCOM_source/libs )
+set (libsdir ${FVCOM_ROOT}/FVCOM_source/libs )
 set (instdir ${CMAKE_CURRENT_BINARY_DIR}/install)
 
 #execute_process(

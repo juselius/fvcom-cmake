@@ -4,8 +4,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 project(FVCOM) 
 enable_language(Fortran)
 
-set (FVCOM_DIR ..)
-
 set (PROJECT_VERSION_MAJOR 3)
 set (PROJECT_VERSION_MINOR 2)
 set (PROJECT_VERSION_PATCH 1)
@@ -25,6 +23,10 @@ option(INTERNAL_METIS "Build internal METIS library" ON)
 
 include(ConfigProjectVersion)
 include(ConfigSafeGuards)
+
+if (NOT FVCOM_ROOT) 
+    set (FVCOM_ROOT ..)
+endif()
 
 #--------------------------------------------------------------------------
 #        PRECISION          DEFAULT PRECISION: SINGLE                     

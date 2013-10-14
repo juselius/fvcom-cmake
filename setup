@@ -159,6 +159,11 @@ group.add_argument('--host',
         default=None,
         help="use predefined defaults for 'host'",
         metavar='STRING')
+group.add_argument('--fvcom-dir',
+        action='store',
+        default=None,
+        help="Path to FVCOM3 toplevel source dir",
+        metavar='STRING')
 
 # process input
 
@@ -242,6 +247,9 @@ def gen_cmake_command():
         command += ' -DCMAKE_BUILD_TYPE=Debug'
     else:
         command += ' -DCMAKE_BUILD_TYPE=Release'
+
+    if args.fvcom_dir:
+        command += ' -DFVCOM_ROOT={0}'.format(abspath(args.fvcom_dir))
 
     if args.define:
         for definition in args.define:
