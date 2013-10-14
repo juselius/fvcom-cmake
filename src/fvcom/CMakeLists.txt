@@ -1,4 +1,4 @@
-set (srcdir ${PROJECT_SOURCE_DIR}/../FVCOM_source)
+set (srcdir ${FVCOM_DIR}/FVCOM_source)
 set (MODS
 ${srcdir}/mod_prec.F
 ${srcdir}/sinter.F

@@ -1,4 +1,4 @@
-set (srcdir ${PROJECT_SOURCE_DIR}/../FVCOM_source/BIO_source)
+set (srcdir ${FVCOM_DIR}/FVCOM_source/BIO_source)
 add_library(bio STATIC
     ${srcdir}/bacteria.F
     ${srcdir}/bio_mixing.F
