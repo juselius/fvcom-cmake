@@ -528,9 +528,8 @@ if (NOT FVCOM_ROOT)
 endif()
 
 if (NOT EXISTS ${FVCOM_ROOT}/FVCOM_source/libs/fproj.tgz)
-    file(DOWNLOAD https://source.uit.no/files/fvcom-suppl-3.6.1.tgz
+    file(DOWNLOAD http://source.uit.no/files/fvcom-suppl-3.6.1.tgz
         ${FVCOM_ROOT}/fvcom-suppl-3.6.1.tgz
-        SHOW_PROGRESS
         )
     execute_process(
         COMMAND tar xfz fvcom-suppl-3.6.1.tgz
