@@ -1,3 +1,4 @@
 *~
 *.swp
 cmake/bump-version
+src/

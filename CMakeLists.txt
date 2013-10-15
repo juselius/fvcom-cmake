@@ -5,7 +5,7 @@ project(FVCOM)
 enable_language(Fortran)
 
 set (PROJECT_VERSION_MAJOR 3)
-set (PROJECT_VERSION_MINOR 2)
+set (PROJECT_VERSION_MINOR 6)
 set (PROJECT_VERSION_PATCH 1)
 
 option(ENABLE_TESTS "Enable test suite" OFF)
@@ -20,13 +20,6 @@ option(INTERNAL_PROJ "Build internal Proj library" ON)
 option(INTERNAL_FPROJ "Build internal FProj library" ON)
 option(INTERNAL_JULIAN "Build internal Julian library" ON)
 option(INTERNAL_METIS "Build internal METIS library" ON)
-
-include(ConfigProjectVersion)
-include(ConfigSafeGuards)
-
-if (NOT FVCOM_ROOT) 
-    set (FVCOM_ROOT ..)
-endif()
 
 #--------------------------------------------------------------------------
 #        PRECISION          DEFAULT PRECISION: SINGLE                     
@@ -527,6 +520,23 @@ if(ENABLE_DEVELOP5)
     add_definitions(-DDEVELOP5)
 endif()
 
+include(ConfigProjectVersion)
+include(ConfigSafeGuards)
+
+if (NOT FVCOM_ROOT) 
+    set (FVCOM_ROOT ${CMAKE_SOURCE_DIR}/src)
+endif()
+
+if (NOT EXISTS ${FVCOM_ROOT}/fvcom-suppl-3.6.1.tgz)
+    file(DOWNLOAD https://source.uit.no/files/fvcom-suppl-3.6.1.tgz
+        ${FVCOM_ROOT}/fvcom-suppl-3.6.1.tgz
+        SHOW_PROGRESS
+        )
+    execute_process(
+        COMMAND tar xfz fvcom-suppl-3.6.1.tgz
+        WORKING_DIRECTORY ${FVCOM_ROOT}
+        )
+endif()
 
 #find_package(HDF5 COMPONENTS Fortran)
 
@@ -580,7 +590,7 @@ configure_file (
     )
 
 add_subdirectory(libs)
-add_subdirectory(src)
+add_subdirectory(CMakeLists)
 
 if (ENABLE_TESTS)
     set (PROJECT_REPOSITORY "https://git.example.com/example")
