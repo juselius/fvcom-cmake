@@ -527,7 +527,7 @@ if (NOT FVCOM_ROOT)
     set (FVCOM_ROOT ${CMAKE_SOURCE_DIR}/src)
 endif()
 
-if (NOT EXISTS ${FVCOM_ROOT}/fvcom-suppl-3.6.1.tgz)
+if (NOT EXISTS ${FVCOM_ROOT}/FVCOM_source/libs/fproj.tgz)
     file(DOWNLOAD https://source.uit.no/files/fvcom-suppl-3.6.1.tgz
         ${FVCOM_ROOT}/fvcom-suppl-3.6.1.tgz
         SHOW_PROGRESS
