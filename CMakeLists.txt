@@ -14,6 +14,7 @@ option(ENABLE_LAPACK "Use LAPACK backend for linear algebra" OFF)
 option(ENABLE_MPI "Enable MPI parallelization" OFF)
 option(ENABLE_OPENMP "Enable OpenMP parallelization" OFF)
 option(ENABLE_CODE_COVERAGE "Compile with code coverage turned on" OFF)
+option(ENABLE_SYMBIOSES "Enable the SYMBIOSES interface" OFF)
 
 option(INTERNAL_NETCDF "Build internal NetCDF library" OFF)
 option(INTERNAL_PROJ "Build internal Proj library" ON)
@@ -590,6 +591,15 @@ configure_file (
 
 add_subdirectory(libs)
 add_subdirectory(CMakeLists)
+
+if (ENABLE_SYMBIOSES)
+    find_package(SYMBIOSES REQUIRED)
+    find_package(Python REQUIRED)
+    include(UseCython)
+    set(PYTHON_SITE_INSTALL_DIR 
+        lib/python${PYTHON_VERSION}/site-packages/Symbioses)
+    add_subdirectory(src/symbioses)
+endif()
 
 if (ENABLE_TESTS)
     set (PROJECT_REPOSITORY "https://git.example.com/example")

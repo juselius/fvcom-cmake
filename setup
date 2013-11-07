@@ -64,6 +64,18 @@ group.add_argument('--openmp',
         default='off',
         const='on',
         help='enable OpenMP [default: %(default)s]')
+group.add_argument('--symbioses',
+        nargs='?',
+        action='store',
+        choices=('on','off'),
+        default='off',
+        const='on',
+        help='enable the SYMBIOSES interface [default: %(default)s]')
+group.add_argument('--symbioses-dir',
+        action='store',
+        default=None,
+        help='root directory containing the SYMBIOSES installation [default: pick automatically based on SYMBIOSES_ROOT (see INSTALL)]',
+        metavar='PATH')
 group.add_argument('--blas',
         nargs='?',
         action='store',
@@ -224,6 +236,12 @@ def gen_cmake_command():
 
     if args.lapack_dir:
         command += ' -DLAPACK_ROOT={0}'.format(abspath(args.lapack_dir))
+
+    if args.symbioses_dir:
+        command += ' -DSYMBIOSES_ROOT={0}'.format(abspath(args.symbioses_dir))
+        args.symbioses = 'on'
+
+    command += ' -DENABLE_SYMBIOSES={0}'.format(args.symbioses.upper())
 
     if args.check:
         command += ' -DENABLE_BOUNDS_CHECK=ON'

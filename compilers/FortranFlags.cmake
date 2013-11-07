@@ -1,6 +1,6 @@
 if (NOT DEFINED DEFAULT_Fortran_FLAGS_SET)
 if(CMAKE_Fortran_COMPILER_ID MATCHES GNU) # this is gfortran
-    set(CMAKE_Fortran_FLAGS         "-cpp")
+    set(CMAKE_Fortran_FLAGS         "-cpp -ffree-form")
     set(CMAKE_Fortran_FLAGS_DEBUG   "-O0 -g -fbacktrace")
     set(CMAKE_Fortran_FLAGS_RELEASE "-w -O3 -ffast-math -funroll-loops -ftree-vectorize")
     if(ENABLE_BOUNDS_CHECK)
