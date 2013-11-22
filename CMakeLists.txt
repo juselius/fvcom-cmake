@@ -526,13 +526,14 @@ include(ConfigSafeGuards)
 
 if (NOT FVCOM_ROOT)
     set (FVCOM_ROOT ${CMAKE_SOURCE_DIR}/src)
-    if (NOT EXISTS ${FVCOM_ROOT})
-        execute_process(
-            COMMAND git submodule init
-            COMMAND git submodule update
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-            )
-    endif()
+endif()
+
+if (NOT EXISTS ${CMAKE_SOURCE_DIR}/src/FVCOM_source)
+    execute_process(
+        COMMAND git submodule init
+        COMMAND git submodule update
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        )
 endif()
 
 
