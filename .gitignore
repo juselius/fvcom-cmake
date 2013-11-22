@@ -1,7 +1,6 @@
 *~
 *.swp
 cmake/bump-version
-src/
 build/
 debug/
 release/

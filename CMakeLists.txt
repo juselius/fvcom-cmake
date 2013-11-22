@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-project(FVCOM) 
+project(FVCOM)
 enable_language(Fortran)
 
 set (PROJECT_VERSION_MAJOR 3)
@@ -23,7 +23,7 @@ option(INTERNAL_JULIAN "Build internal Julian library" ON)
 option(INTERNAL_METIS "Build internal METIS library" ON)
 
 #--------------------------------------------------------------------------
-#        PRECISION          DEFAULT PRECISION: SINGLE                     
+#        PRECISION          DEFAULT PRECISION: SINGLE
 #                           UNCOMMENT TO SELECT DOUBLE PRECISION
 #--------------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ option(ENABLE_WATER_QUALITY "WATER_QUALITY" OFF)
 
 #--------------------------------------------------------------------------
 #        PROJECTION         A Fortran90 wrapper for the Cartographic projection
-#                           Software, proj4. 
+#                           Software, proj4.
 #                           Proj can be obtained from:
 #                           http://www.remotesensing.org/proj/
 #                           Thanks to: USGS
@@ -85,10 +85,10 @@ option(ENABLE_PROJ "PROJ" OFF)
 #--------------------------------------------------------------------------
 #        DATA_ASSIMILATION  INCLUDE NUDGING BASED DATA ASSIMILATION FOR
 #                           CURRENT/TEMP/SALINITY/SST
-#                           CAN BE ACTIVATED/DEACTIVATED AT RUN TIME WITH 
-#                           INPUT FILE CONTROL.  (SEE exa_run.dat) FILE 
-#                           DEFAULT: NO DATA ASSIMILATION INCLUDED 
-#                           UNCOMMENT TO INCLUDE DATA ASSIMILATION 
+#                           CAN BE ACTIVATED/DEACTIVATED AT RUN TIME WITH
+#                           INPUT FILE CONTROL.  (SEE exa_run.dat) FILE
+#                           DEFAULT: NO DATA ASSIMILATION INCLUDED
+#                           UNCOMMENT TO INCLUDE DATA ASSIMILATION
 #--------------------------------------------------------------------------
 
 option(ENABLE_DATA_ASSIM "DATA_ASSIM" OFF)
@@ -109,7 +109,7 @@ option(ENABLE_GCY2 "GCY2" OFF)
 #        TURBULENCE MODEL   USE GOTM TURBULENCE MODEL INSTEAD OF THE ORIGINAL
 #                           FVCOM MELLOR-YAMADA 2.5 IMPLEMENTATION
 #                           UNCOMMENT TO USE GOTM TURBULENCE MODEL
-#        NOTE: You Must Build GOTM 4.x, GOTM 3.x used a different 
+#        NOTE: You Must Build GOTM 4.x, GOTM 3.x used a different
 #              do_turbulence interface and will not work.
 #--------------------------------------------------------------------------
 
@@ -130,7 +130,7 @@ option(ENABLE_ATMO_TIDE "ATMO_TIDE" OFF)
 #--------------------------------------------------------------------------
 #       RIVER DISTRIBUTION OPTION:
 #       THE STANDARD NAME LIST USES A CHARACTER STRING TO SET A FUNCION
-#       DISTROBUTION. YOU CAN OPTIONALLY SPECIFY TO USE THE OLD STYLE, 
+#       DISTROBUTION. YOU CAN OPTIONALLY SPECIFY TO USE THE OLD STYLE,
 #       FLOATING POINT DISTROBUTION HERE. USE THIS WHEN CONVERTING OLD-STYLE
 #       RIVER INPUT FILES!
 #--------------------------------------------------------------------------
@@ -139,7 +139,7 @@ option(ENABLE_RIVER_FLOAT "RIVER_FLOAT" OFF)
 
 #--------------------------------------------------------------------------
 #        Using A fully multidimensional positive definite advection
-#        transport algorithm with small implicit diffusion. 
+#        transport algorithm with small implicit diffusion.
 #        Based on Smolarkiewicz, P. K; Journal of Computational
 #        Physics, 54, 325-362, 1984
 #--------------------------------------------------------------------------
@@ -159,10 +159,10 @@ option(ENABLE_TWO_D_MODEL "TWO_D_MODEL" OFF)
 option(ENABLE_BALANCE_2D "BALANCE_2D" OFF)
 
 #--------------------------------------------------------------------------
-#           OPEN BOUNDARY FORCING TYPE 
+#           OPEN BOUNDARY FORCING TYPE
 #           DEFAULT: OPEN BOUNDARY NODE WATER ELEVATION FORCING
 #           UNCOMMENT TO SELECT BOTH OPEN BOUNDARY NODE WATER ELEVATION
-#           FORCING AND OPEN BOUNDARY VOLUME TRANSPORT FORCING 
+#           FORCING AND OPEN BOUNDARY VOLUME TRANSPORT FORCING
 #---------------------------------------------------------------------------
 
 option(ENABLE_MEAN_FLOW "MEAN_FLOW" OFF)
@@ -175,7 +175,7 @@ option(ENABLE_MEAN_FLOW "MEAN_FLOW" OFF)
 option(ENABLE_TIDE_OUTPUT "TIDE_OUTPUT" OFF)
 
 #--------------------------------------------------------------------------
-#           dye release      
+#           dye release
 #---------------------------------------------------------------------------
 
 option(ENABLE_DYE_RELEASE "DYE_RELEASE" OFF)
@@ -197,31 +197,31 @@ option(ENABLE_ONE_D_MODEL "ONE_D_MODEL" OFF)
 
 #--------------------------------------------------------------------------
 #       GENERAL BIOLOGICAL MODEL:    UNCOMMENT TO INCLUDE MODEL
-#-------------------------------------------------------------------------- 
+#--------------------------------------------------------------------------
 
 option(ENABLE_BioGen "BioGen" OFF)
 
 #--------------------------------------------------------------------------
-#         Dynamic/Thermodynamic Ice                     
+#         Dynamic/Thermodynamic Ice
 #--------------------------------------------------------------------------
 
 option(ENABLE_ICE "ICE" OFF)
 
 #--------------------------------------------------------------------------
-#         CALCULATE THE NET HEAT FLUX IN MODEL                           
+#         CALCULATE THE NET HEAT FLUX IN MODEL
 #--------------------------------------------------------------------------
 
 option(ENABLE_HEATING_CALCULATED "HEATING_CALCULATED" OFF)
 
 #--------------------------------------------------------------------------
-#         AIR_PRESSURE FROM SURFACE FORCING                           
+#         AIR_PRESSURE FROM SURFACE FORCING
 #--------------------------------------------------------------------------
 
 option(ENABLE_AIR_PRESSURE "AIR_PRESSURE" OFF)
 
 #--------------------------------------------------------------------------
 # Visit online simulation mode
-#--------------------------------------------------------------------------  
+#--------------------------------------------------------------------------
 
 option(ENABLE_VISIT "VISIT" OFF)
 
@@ -276,7 +276,7 @@ option(ENABLE_OLD_PETSC "OLD_PETSC" ON)
 
 #--------------------------------------------------------------------------
 #        DEVELOPMENT FLAGS
-#            FOR BETA WORK ONLY 
+#            FOR BETA WORK ONLY
 #--------------------------------------------------------------------------
 
 option(ENABLE_DEVELOP1 "DEVELOP1" OFF)
@@ -524,9 +524,17 @@ endif()
 include(ConfigProjectVersion)
 include(ConfigSafeGuards)
 
-if (NOT FVCOM_ROOT) 
+if (NOT FVCOM_ROOT)
     set (FVCOM_ROOT ${CMAKE_SOURCE_DIR}/src)
+    if (NOT EXISTS ${FVCOM_ROOT})
+        execute_process(
+            COMMAND git submodule init
+            COMMAND git submodule update
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            )
+    endif()
 endif()
+
 
 if (NOT EXISTS ${FVCOM_ROOT}/FVCOM_source/libs/fproj.tgz)
     file(DOWNLOAD http://source.uit.no/files/fvcom-suppl-3.6.1.tgz
@@ -590,13 +598,13 @@ configure_file (
     )
 
 add_subdirectory(libs)
-add_subdirectory(CMakeLists)
+add_subdirectory(make)
 
 if (ENABLE_SYMBIOSES)
     find_package(SYMBIOSES REQUIRED)
     find_package(Python REQUIRED)
     include(UseCython)
-    set(PYTHON_SITE_INSTALL_DIR 
+    set(PYTHON_SITE_INSTALL_DIR
         lib/python${PYTHON_VERSION}/site-packages/Symbioses)
     add_subdirectory(src/symbioses)
 endif()
@@ -622,6 +630,6 @@ set(CPACK_PACKAGE_DESCRIPTION_FILE ${CMAKE_CURRENT_SOURCE_DIR}/INSTALL.rst)
 set(CPACK_RESOURCE_FILE_README ${CMAKE_CURRENT_SOURCE_DIR}/README.rst)
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/COPYING)
 set(CPACK_GENERATOR TGZ DEB RPM)
-include(ConfigPackaging) 
+include(ConfigPackaging)
 
 # vim:ft=cmake
