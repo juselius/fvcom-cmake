@@ -1,203 +1,211 @@
-set (srcdir ${FVCOM_ROOT}/FVCOM_source)
 set (MODS
-${srcdir}/mod_prec.F
-${srcdir}/sinter.F
-${srcdir}/mod_types.F
-${srcdir}/mod_time.F
-${srcdir}/mod_main.F
-${srcdir}/mod_spherical.F
-${srcdir}/mod_utils.F
-${srcdir}/mod_clock.F
-${srcdir}/eqs_of_state.F
-${srcdir}/mod_bulk.F
-${srcdir}/mod_interp.F
-${srcdir}/mod_par.F
-${srcdir}/mod_ncll.F
-${srcdir}/mod_nctools.F
-${srcdir}/mod_wd.F
-${srcdir}/mod_sng.F
-${srcdir}/mod_heatflux.F
-${srcdir}/mod_input.F
-${srcdir}/mod_force.F
-${srcdir}/mod_obcs.F
-${srcdir}/mod_petsc.F
-${srcdir}/mod_semi_implicit.F
-${srcdir}/mod_non_hydro.F
-${srcdir}/mod_set_time.F
-${srcdir}/ice_kinds_mod.F
-${srcdir}/ice_model_size.F
-${srcdir}/ice_domain.F
-${srcdir}/ice_constants.F
-${srcdir}/ice_fileunits.F
-${srcdir}/ice_state.F
-${srcdir}/ice_work.F
-${srcdir}/ice_grid.F
-${srcdir}/ice_albedo.F
-${srcdir}/ice_calendar.F
-${srcdir}/ice_flux.F
-${srcdir}/ice_flux_in.F
-${srcdir}/ice_itd.F
-${srcdir}/ice_mechred.F
-${srcdir}/ice_itd_linear.F
-${srcdir}/ice_scaling.F
-${srcdir}/ice_atmo.F
-${srcdir}/ice_ocean.F
-${srcdir}/ice_therm_vertical.F
-${srcdir}/ice_init.F
-${srcdir}/ice_therm_itd.F
-${srcdir}/mod_ice2d.F
-${srcdir}/mod_ice.F
-${srcdir}/mod_startup.F
-${srcdir}/mod_wqm.F
-${srcdir}/mod_ncdio.F
-${srcdir}/mod_setup.F
-${srcdir}/mod_newinp.F
-${srcdir}/particle.F
-${srcdir}/linklist.F
-${srcdir}/mod_lag.F
-${srcdir}/mod_northpole.F
-${srcdir}/mod_pwp.F
-${srcdir}/mod_optimal_interpolation.F
-${srcdir}/mod_report.F
-${srcdir}/mod_probe.F
-${srcdir}/mod_gotm.F
-${srcdir}/mod_balance_2d.F
-${srcdir}/mod_tridiag.F
-${srcdir}/mod_scal.F
-${srcdir}/mod_meanflow.F
-${srcdir}/mod_obcs2.F
-${srcdir}/mod_obcs3.F
-${srcdir}/mod_sed.F
-${srcdir}/mod_enkf.F
-${srcdir}/mod_etkf.F
-${srcdir}/mod_rrk.F
-${srcdir}/mod_rrkf_obs.F
-${srcdir}/mod_rrkassim.F
-${srcdir}/mod_enkf_ncd.F
-${srcdir}/enkf_ncdio.F
-${srcdir}/mod_enkf_obs.F
-${srcdir}/mod_enkfassim.F
-${srcdir}/mod_assim.F
-${srcdir}/mod_nesting.F
-${srcdir}/mod_visit.F
-${srcdir}/mod_plbc.F
-${srcdir}/mod_dam.F
-${srcdir}/mod_station_timeseries.F
-${srcdir}/mod_boundschk.F
+    mod_prec.F
+    sinter.F
+    mod_types.F
+    mod_time.F
+    mod_main.F
+    mod_spherical.F
+    mod_utils.F
+    mod_clock.F
+    eqs_of_state.F
+    mod_bulk.F
+    mod_interp.F
+    mod_par.F
+    mod_ncll.F
+    mod_nctools.F
+    mod_wd.F
+    mod_sng.F
+    mod_heatflux.F
+    mod_input.F
+    mod_force.F
+    mod_obcs.F
+    mod_petsc.F
+    mod_semi_implicit.F
+    mod_non_hydro.F
+    mod_set_time.F
+    ice_kinds_mod.F
+    ice_model_size.F
+    ice_domain.F
+    ice_constants.F
+    ice_fileunits.F
+    ice_state.F
+    ice_work.F
+    ice_grid.F
+    ice_albedo.F
+    ice_calendar.F
+    ice_flux.F
+    ice_flux_in.F
+    ice_itd.F
+    ice_mechred.F
+    ice_itd_linear.F
+    ice_scaling.F
+    ice_atmo.F
+    ice_ocean.F
+    ice_therm_vertical.F
+    ice_init.F
+    ice_therm_itd.F
+    mod_ice2d.F
+    mod_ice.F
+    mod_startup.F
+    mod_wqm.F
+    mod_ncdio.F
+    mod_setup.F
+    mod_newinp.F
+    particle.F
+    linklist.F
+    mod_lag.F
+    mod_northpole.F
+    mod_pwp.F
+    mod_optimal_interpolation.F
+    mod_report.F
+    mod_probe.F
+    mod_gotm.F
+    mod_balance_2d.F
+    mod_tridiag.F
+    mod_scal.F
+    mod_meanflow.F
+    mod_obcs2.F
+    mod_obcs3.F
+    mod_sed.F
+    mod_enkf.F
+    mod_etkf.F
+    mod_rrk.F
+    mod_rrkf_obs.F
+    mod_rrkassim.F
+    mod_enkf_ncd.F
+    enkf_ncdio.F
+    mod_enkf_obs.F
+    mod_enkfassim.F
+    mod_assim.F
+    mod_nesting.F
+    mod_visit.F
+    mod_plbc.F
+    mod_dam.F
+    mod_station_timeseries.F
+    mod_boundschk.F
     )
 
 if (ENABLE_DYE_RELEASE)
-    set (MODS ${MODS} ${srcdir}/mod_dye.F)
+    set (MODS ${MODS} mod_dye.F)
 endif()
 
 set (MODS_W
-${srcdir}/mod_main_wave.F
-${srcdir}/swmod1.F
-${srcdir}/swmod2.F
-${srcdir}/swmod3.F
-${srcdir}/mod_action_im.F
-${srcdir}/mod_action_ex.F
-${srcdir}/mod_wavesetup.F
-${srcdir}/mod_bbl.F
+    mod_main_wave.F
+    swmod1.F
+    swmod2.F
+    swmod3.F
+    mod_action_im.F
+    mod_action_ex.F
+    mod_wavesetup.F
+    mod_bbl.F
     )
 if (ENABLE_WAVE_CURRENT_INTERACTION)
-    set (MODS_W ${MODS_W} ${srcdir}/mod_wave_current_interaction.F)
+    set (MODS_W ${MODS_W} mod_wave_current_interaction.F)
 endif()
 
 set (MAIN
-${srcdir}/genmap.F
-${srcdir}/tge.F
-${srcdir}/longshore_flow.F
-${srcdir}/cell_area.F
-${srcdir}/open_all.F
-${srcdir}/load_grid.F
-${srcdir}/allocate_all.F
-${srcdir}/setup_domain.F
-${srcdir}/genmap_obc.F
-${srcdir}/genmap_lsf.F
-${srcdir}/print_vals.F
-${srcdir}/coords_n_const.F
-${srcdir}/shape_coef_gcn.F
-${srcdir}/shape_coef_gcy.F
-${srcdir}/depth_grad.F
-${srcdir}/grid_metrics.F
-${srcdir}/cntrl_prmtrs.F
-${srcdir}/init_sed.F
-${srcdir}/internal_step.F
-${srcdir}/bcond_gcn.F
-${srcdir}/bcond_gcy.F
-${srcdir}/adjust2d3d.F
-${srcdir}/brough.F
-${srcdir}/advection_edge_gcn.F
-${srcdir}/advection_edge_gcy.F
-${srcdir}/ghostuv.F
-${srcdir}/advave_edge_gcn.F
-${srcdir}/advave_edge_gcy.F
-${srcdir}/phy_baropg.F
-${srcdir}/baropg.F
-${srcdir}/external_step.F
-${srcdir}/extel_edge.F
-${srcdir}/extuv_edge.F
-${srcdir}/depth_check.F
-${srcdir}/vertvl_edge.F
-${srcdir}/adv_uv_edge_gcn.F
-${srcdir}/adv_uv_edge_gcy.F
-${srcdir}/vdif_uv.F
-${srcdir}/extelpf_edge.F
-${srcdir}/wreal.F
-${srcdir}/viscofh.F
-${srcdir}/adv_q.F
-${srcdir}/fct_q2.F
-${srcdir}/fct_q2l.F
-${srcdir}/vdif_q.F
-${srcdir}/adv_t.F
-${srcdir}/adv_s.F
-${srcdir}/fct_t.F
-${srcdir}/vdif_ts.F
-${srcdir}/vdif_ts_gom.F
-${srcdir}/fct_s.F
-${srcdir}/bcond_ts.F
-${srcdir}/adjust_ts.F
-${srcdir}/conv_over.F
-${srcdir}/visitsim.F
-${srcdir}/startup_type.F
-${srcdir}/edge_len.F
-${srcdir}/adcor.F
-${srcdir}/icing.F
-${srcdir}/rho_pmean.F
-${srcdir}/calc_vort.F
-${srcdir}/namelist.F
-${srcdir}/nh_set_nesting.F
+    genmap.F
+    Vtge.F
+    Vlongshore_flow.F
+    Vcell_area.F
+    Vopen_all.F
+    Vload_grid.F
+    Vallocate_all.F
+    Vsetup_domain.F
+    Vgenmap_obc.F
+    Vgenmap_lsf.F
+    Vprint_vals.F
+    Vcoords_n_const.F
+    Vshape_coef_gcn.F
+    Vshape_coef_gcy.F
+    Vdepth_grad.F
+    Vgrid_metrics.F
+    Vcntrl_prmtrs.F
+    Vinit_sed.F
+    Vinternal_step.F
+    Vbcond_gcn.F
+    Vbcond_gcy.F
+    Vadjust2d3d.F
+    Vbrough.F
+    Vadvection_edge_gcn.F
+    Vadvection_edge_gcy.F
+    Vghostuv.F
+    Vadvave_edge_gcn.F
+    Vadvave_edge_gcy.F
+    Vphy_baropg.F
+    Vbaropg.F
+    Vexternal_step.F
+    Vextel_edge.F
+    Vextuv_edge.F
+    Vdepth_check.F
+    Vvertvl_edge.F
+    Vadv_uv_edge_gcn.F
+    Vadv_uv_edge_gcy.F
+    Vvdif_uv.F
+    Vextelpf_edge.F
+    Vwreal.F
+    Vviscofh.F
+    Vadv_q.F
+    Vfct_q2.F
+    Vfct_q2l.F
+    Vvdif_q.F
+    Vadv_t.F
+    Vadv_s.F
+    Vfct_t.F
+    Vvdif_ts.F
+    Vvdif_ts_gom.F
+    Vfct_s.F
+    Vbcond_ts.F
+    Vadjust_ts.F
+    Vconv_over.F
+    Vvisitsim.F
+    Vstartup_type.F
+    Vedge_len.F
+    Vadcor.F
+    Vicing.F
+    Vrho_pmean.F
+    Vcalc_vort.F
+    Vnamelist.F
+    Vnh_set_nesting.F
     )
 
 set (MAIN_W
-${srcdir}/ocpmix.F
-${srcdir}/ocpcre.F
-${srcdir}/ocpids.F
-${srcdir}/swanpre1.F
-${srcdir}/swanpre2.F
-${srcdir}/swanser.F
-${srcdir}/swanmain.F
-${srcdir}/swancom1.F
-${srcdir}/swancom2.F
-${srcdir}/swancom3.F
-${srcdir}/swancom4.F
-${srcdir}/swancom5.F
+    ocpmix.F
+    ocpcre.F
+    ocpids.F
+    swanpre1.F
+    swanpre2.F
+    swanser.F
+    swanmain.F
+    swancom1.F
+    swancom2.F
+    swancom3.F
+    swancom4.F
+    swancom5.F
     )
 
 set (COBJS
-    ${srcdir}/func_pointer.c
+    func_pointer.c
     )
 
 set (BIOGEN
-    ${srcdir}/mod_bio_3D.F
-    ${srcdir}/mod_onedtide.F
+    mod_bio_3D.F
+    mod_onedtide.F
     )
 
 include_directories(
     ${NETCDF_INCLUDES}
     ${JULIAN_INCLUDE_DIR}
     )
+
+set (srcdir ${FVCOM_ROOT}/FVCOM_source)
+
+add_prefix(MODS ${srcdir} ${MODS})
+add_prefix(MODS_W ${srcdir} ${MODS_W})
+add_prefix(MAIN ${srcdir} ${MAIN})
+add_prefix(MAIN_W ${srcdir} ${MAIN_W})
+add_prefix(BIOGEN ${srcdir} ${BIOGEN})
+add_prefix(COBJS ${srcdir} ${COBJS})
 
 add_library(fvcom SHARED
     ${MODS}
