@@ -599,7 +599,7 @@ configure_file (
     )
 
 add_subdirectory(libs)
-add_subdirectory(make)
+add_subdirectory(fvcom)
 
 if (ENABLE_SYMBIOSES)
     find_package(SYMBIOSES REQUIRED)
