@@ -598,7 +598,6 @@ configure_file (
     ${PROJECT_BINARY_DIR}/config.h
     )
 
-#add_subdirectory(libs)
 add_subdirectory(fvcom)
 
 if (ENABLE_SYMBIOSES)

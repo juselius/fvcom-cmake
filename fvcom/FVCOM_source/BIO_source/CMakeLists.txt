@@ -16,7 +16,7 @@ set (BIO
     zooplankton.F
     )
 
-set (srcdir ${FVCOM_ROOT}/FVCOM_source/BIO_source)
+set (srcdir ${srcdir}/BIO_source)
 add_prefix(BIO ${srcdir} "${BIO}")
 
 add_library(bio STATIC ${BIO})

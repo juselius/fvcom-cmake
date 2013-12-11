@@ -1,3 +1,7 @@
+if (ENABBLE_BioGen)
+    add_subdirectory(BIO_source)
+endif()
+
 set (MODS
     mod_prec.F
     sinter.F
@@ -99,74 +103,75 @@ set (MODS_W
     mod_wavesetup.F
     mod_bbl.F
     )
+
 if (ENABLE_WAVE_CURRENT_INTERACTION)
     set (MODS_W ${MODS_W} mod_wave_current_interaction.F)
 endif()
 
 set (MAIN
     genmap.F
-    Vtge.F
-    Vlongshore_flow.F
-    Vcell_area.F
-    Vopen_all.F
-    Vload_grid.F
-    Vallocate_all.F
-    Vsetup_domain.F
-    Vgenmap_obc.F
-    Vgenmap_lsf.F
-    Vprint_vals.F
-    Vcoords_n_const.F
-    Vshape_coef_gcn.F
-    Vshape_coef_gcy.F
-    Vdepth_grad.F
-    Vgrid_metrics.F
-    Vcntrl_prmtrs.F
-    Vinit_sed.F
-    Vinternal_step.F
-    Vbcond_gcn.F
-    Vbcond_gcy.F
-    Vadjust2d3d.F
-    Vbrough.F
-    Vadvection_edge_gcn.F
-    Vadvection_edge_gcy.F
-    Vghostuv.F
-    Vadvave_edge_gcn.F
-    Vadvave_edge_gcy.F
-    Vphy_baropg.F
-    Vbaropg.F
-    Vexternal_step.F
-    Vextel_edge.F
-    Vextuv_edge.F
-    Vdepth_check.F
-    Vvertvl_edge.F
-    Vadv_uv_edge_gcn.F
-    Vadv_uv_edge_gcy.F
-    Vvdif_uv.F
-    Vextelpf_edge.F
-    Vwreal.F
-    Vviscofh.F
-    Vadv_q.F
-    Vfct_q2.F
-    Vfct_q2l.F
-    Vvdif_q.F
-    Vadv_t.F
-    Vadv_s.F
-    Vfct_t.F
-    Vvdif_ts.F
-    Vvdif_ts_gom.F
-    Vfct_s.F
-    Vbcond_ts.F
-    Vadjust_ts.F
-    Vconv_over.F
-    Vvisitsim.F
-    Vstartup_type.F
-    Vedge_len.F
-    Vadcor.F
-    Vicing.F
-    Vrho_pmean.F
-    Vcalc_vort.F
-    Vnamelist.F
-    Vnh_set_nesting.F
+    tge.F
+    longshore_flow.F
+    cell_area.F
+    open_all.F
+    load_grid.F
+    allocate_all.F
+    setup_domain.F
+    genmap_obc.F
+    genmap_lsf.F
+    print_vals.F
+    coords_n_const.F
+    shape_coef_gcn.F
+    shape_coef_gcy.F
+    depth_grad.F
+    grid_metrics.F
+    cntrl_prmtrs.F
+    init_sed.F
+    internal_step.F
+    bcond_gcn.F
+    bcond_gcy.F
+    adjust2d3d.F
+    brough.F
+    advection_edge_gcn.F
+    advection_edge_gcy.F
+    ghostuv.F
+    advave_edge_gcn.F
+    advave_edge_gcy.F
+    phy_baropg.F
+    baropg.F
+    external_step.F
+    extel_edge.F
+    extuv_edge.F
+    depth_check.F
+    vertvl_edge.F
+    adv_uv_edge_gcn.F
+    adv_uv_edge_gcy.F
+    vdif_uv.F
+    extelpf_edge.F
+    wreal.F
+    viscofh.F
+    adv_q.F
+    fct_q2.F
+    fct_q2l.F
+    vdif_q.F
+    adv_t.F
+    adv_s.F
+    fct_t.F
+    vdif_ts.F
+    vdif_ts_gom.F
+    fct_s.F
+    bcond_ts.F
+    adjust_ts.F
+    conv_over.F
+    visitsim.F
+    startup_type.F
+    edge_len.F
+    adcor.F
+    icing.F
+    rho_pmean.F
+    calc_vort.F
+    namelist.F
+    nh_set_nesting.F
     )
 
 set (MAIN_W
@@ -198,7 +203,7 @@ include_directories(
     ${JULIAN_INCLUDE_DIR}
     )
 
-set (srcdir ${FVCOM_ROOT}/FVCOM_source)
+set (srcdir ${srcdir}/FVCOM_source)
 
 add_prefix(MODS ${srcdir} "${MODS}")
 add_prefix(MODS_W ${srcdir} "${MODS_W}")

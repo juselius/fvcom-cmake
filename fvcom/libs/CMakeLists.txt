@@ -1,6 +1,7 @@
 include(ExternalProject)
 
-set (libsdir ${FVCOM_ROOT}/FVCOM_source/libs )
+set (srcdir ${srcdir}/FVCOM_source)
+set (libsdir ${srcdir}/libs)
 set (instdir ${CMAKE_CURRENT_BINARY_DIR}/install)
 
 #execute_process(
@@ -39,8 +40,8 @@ if (INTERNAL_JULIAN)
         DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}
         SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/${extname}
         BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/${extname}
-        PATCH_COMMAND ${CMAKE_SOURCE_DIR}/libs/${extname}-patch.sh
-            ${CMAKE_SOURCE_DIR}/src/fvcom
+        PATCH_COMMAND ${CMAKE_SOURCE_DIR}/fvcom/libs/${extname}-patch.sh
+            ${srcdir}
             ${instdir}/${extname}
             ${CMAKE_CURRENT_BINARY_DIR}/${extname}
         CONFIGURE_COMMAND ""
@@ -59,8 +60,8 @@ if (INTERNAL_METIS)
         DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}
         SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/${extname}
         BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/${extname}
-        PATCH_COMMAND ${CMAKE_SOURCE_DIR}/libs/${extname}-patch.sh
-            ${CMAKE_SOURCE_DIR}/src/fvcom
+        PATCH_COMMAND ${CMAKE_SOURCE_DIR}/fvcom/libs/${extname}-patch.sh
+            ${srcdir}
             ${instdir}/${extname}
             ${CMAKE_CURRENT_BINARY_DIR}/${extname}
         CONFIGURE_COMMAND ""
@@ -109,12 +110,12 @@ if (INTERNAL_FPROJ)
             FC=${CMAKE_Fortran_COMPILER}
             --with-proj4=${instdir}/proj
             --prefix=${instdir}/${extname}
-        ${CMAKE_SOURCE_DIR}/libs/${extname}-patch.sh
+        ${CMAKE_SOURCE_DIR}/fvcom/libs/${extname}-patch.sh
             ${CMAKE_Fortran_COMPILER_ID}
             ${CMAKE_CURRENT_BINARY_DIR}/${extname}
         )
     ExternalProject_Add_Step(${extname} post-conf-patch
-        COMMAND ${CMAKE_SOURCE_DIR}/libs/${extname}-patch.sh
+        COMMAND ${CMAKE_SOURCE_DIR}/fvcom/libs/${extname}-patch.sh
             ${CMAKE_Fortran_COMPILER_ID}
             ${CMAKE_CURRENT_BINARY_DIR}/${extname}
         COMMENT "post-configure patch"
