@@ -200,12 +200,12 @@ include_directories(
 
 set (srcdir ${FVCOM_ROOT}/FVCOM_source)
 
-add_prefix(MODS ${srcdir} ${MODS})
-add_prefix(MODS_W ${srcdir} ${MODS_W})
-add_prefix(MAIN ${srcdir} ${MAIN})
-add_prefix(MAIN_W ${srcdir} ${MAIN_W})
-add_prefix(BIOGEN ${srcdir} ${BIOGEN})
-add_prefix(COBJS ${srcdir} ${COBJS})
+add_prefix(MODS ${srcdir} "${MODS}")
+add_prefix(MODS_W ${srcdir} "${MODS_W}")
+add_prefix(MAIN ${srcdir} "${MAIN}")
+add_prefix(MAIN_W ${srcdir} "${MAIN_W}")
+add_prefix(BIOGEN ${srcdir} "${BIOGEN}")
+add_prefix(COBJS ${srcdir} "${COBJS}")
 
 add_library(fvcom SHARED
     ${MODS}

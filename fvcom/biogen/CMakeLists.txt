@@ -17,7 +17,7 @@ set (BIO
     )
 
 set (srcdir ${FVCOM_ROOT}/FVCOM_source/BIO_source)
-add_prefix(BIO ${srcdir} ${BIO})
+add_prefix(BIO ${srcdir} "${BIO}")
 
 add_library(bio STATIC ${BIO})
 
