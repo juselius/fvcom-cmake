@@ -1,3 +1,0 @@
-[submodule "src"]
-	path = src
-	url = git@source.uit.no:apn/fvcom3.git
